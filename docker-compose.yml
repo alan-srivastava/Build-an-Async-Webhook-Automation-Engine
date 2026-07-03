@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+  mongo:
+    image: mongo:7
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+  app:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - MONGO_URI=mongodb://mongo:27017/debales_webhooks
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - NOTIFY_WEBHOOK_URL=${NOTIFY_WEBHOOK_URL:-https://webhook.site/your-unique-url}
+      - CRM_FAILURE_RATE=${CRM_FAILURE_RATE:-0.3}
+    depends_on:
+      - mongo
+      - redis
+
+volumes:
+  mongo_data:
+  redis_data:
