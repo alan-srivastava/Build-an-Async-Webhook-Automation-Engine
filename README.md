@@ -2,6 +2,9 @@
 
 NestJS + BullMQ + Redis + MongoDB. Multi-tenant webhook ingestion, rule
 evaluation, and action dispatch, with observability and replay.
+<img width="1917" height="965" alt="image" src="https://github.com/user-attachments/assets/8862c10e-f5ee-4d42-bec7-7546174da10e" />
+<img width="1917" height="966" alt="image" src="https://github.com/user-attachments/assets/fd1a696c-1689-4b4f-b933-a0ab05dc7bdc" />
+
 
 ## 1. Setup
 
